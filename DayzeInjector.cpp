@@ -9,7 +9,7 @@ void ShowDayzeMenu();
 
 // Fonction principale pour une application Windows GUI
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    // Création d'une fenêtre Windows (exemple basique)
+    // Création d'une fenêtre Windows
     WNDCLASS wc = { 0 };
     wc.lpfnWndProc = DefWindowProc;
     wc.hInstance = hInstance;
