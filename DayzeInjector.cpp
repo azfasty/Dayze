@@ -1,22 +1,42 @@
+
+
 // Fichier : DayzeInjector.cpp
 
 #include <windows.h>
-#include "imgui.h"
-#include "Functions.h"
+#include "imgui/imgui.h"
+
+// Déclaration des fonctions externes
+void EnableGodMode();
+void EnableSpeedHack();
+void EnableJumpPower();
+void EnableInvisibility();
+void RevivePlayer();
+void HealPlayer();
+void ExplodePlayer(int playerID);
+void KillPlayer(int playerID);
+void StealOutfit(int playerID);
+void GiveWeapon();
+void InfiniteAmmo();
+void SpawnVehicle();
+void RepairVehicle();
+int GetPlayerCount();
+const char* GetPlayerName(int index);
 
 // Déclaration de la fonction ShowDayzeMenu()
 void ShowDayzeMenu();
 
-// Fonction principale pour une application Windows GUI
+// Fonction principale Windows
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    // Création d'une fenêtre Windows
+    // Définition de la classe de fenêtre
     WNDCLASS wc = { 0 };
     wc.lpfnWndProc = DefWindowProc;
     wc.hInstance = hInstance;
-    wc.lpszClassName = "DayzeInjectorClass";
+    wc.lpszClassName = L"DayzeInjectorClass";
+
     RegisterClass(&wc);
 
-    HWND hwnd = CreateWindowEx(0, "DayzeInjectorClass", "Dayze Injector", WS_OVERLAPPEDWINDOW,
+    // Création de la fenêtre principale
+    HWND hwnd = CreateWindowEx(0, L"DayzeInjectorClass", L"Dayze Injector", WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, NULL, NULL, hInstance, NULL);
 
     if (!hwnd) return 0;
@@ -24,11 +44,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ShowWindow(hwnd, nCmdShow);
     UpdateWindow(hwnd);
 
-    // Initialisation ImGui
+    // Initialisation d'ImGui
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; 
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
     // Boucle principale Windows
     MSG msg;
@@ -48,7 +68,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         ImGui::Render();
     }
 
-    // Nettoyage ImGui
+    // Nettoyage d'ImGui
     ImGui::DestroyContext();
     return 0;
 }
